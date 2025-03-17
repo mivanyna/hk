@@ -1,0 +1,55 @@
+.cell {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 2px;
+  border: 1px solid lightgray;
+  min-width: 20px;
+  min-height: 18px;
+  text-align: center;
+  border-bottom-color: transparent;
+  &.dest {
+    min-width: 70px;
+  }
+  .date {
+    min-width: 100px;
+  }
+  &.divider {
+    border-top-color: lightgray;
+  }
+}
+.invisible {
+  color: transparent;
+  border-top-color: transparent;
+}
+.selected .cell {
+  background-color: lightgreen;
+}
+.search-container {
+  margin-bottom: 10px;
+}
+.list {
+  max-width: 260px;
+}
+.search-container {
+  position: sticky;
+  top: 0;
+  padding: 2px;
+  z-index: 1;
+  background: white;
+  border-bottom: 1px solid lightgray;
+}
+.month, .week, .day {
+  color: gray;
+}
+.row:hover {
+  background-color: lightgray;
+  .cell {
+    background-color: lightgray;
+  }
+  &.selected {
+    background-color: lighten(lightgreen, 10%);
+    .cell {
+      background-color: lighten(lightgreen, 10%);
+    }
+  }
+}

@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  width: 100%;
+}
+.dest {
+  display: inline-block;
+  width: 60px;
+  height: 50px;
+  vertical-align: top;
+}
+.dest div {
+  border: 1px solid black;
+  text-align: center;
+}
+.dest.total div {
+  border-width: 2px;
+}
+.dest.loan div + div {
+  background-color: lightgray;
+}
+.dest.selected div {
+  background-color: lightgreen;
+}
+

@@ -1,0 +1,19 @@
+:host {
+
+}
+
+.select-file {
+  margin-bottom: 20px;
+}
+.tabs-container {
+  margin-bottom: 20px;
+}
+button {
+  max-width: 200px;
+  min-width: 100px;
+  display: inline-block;
+  background-color: grey;
+}
+button.active {
+  background-color: lightgrey;
+}

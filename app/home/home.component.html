@@ -1,0 +1,44 @@
+<div class="container">
+
+  @if (!excelData.length) {
+    <div class="select-file">
+      <label for="input1"> Select file... </label>
+      <input type="file" id="input1" name="input1" hidden="hidden" (change)="onFileChange($event)" accept=".xlsx, .xls">
+    </div>
+  }
+
+  @if (excelData.length) {
+    <div class="tabs-container">
+      @for (view of views; track view) {
+        <button type="button"
+                [class.active]="activeView === view.id"
+                (click)="setView(view.id)">
+          {{view.name}}
+        </button>
+      }
+    </div>
+
+    @switch (activeView) {
+      @case (Views.file) {
+        <div class="select-file">
+          <label for="input"> Select file... </label>
+          <input type="file" id="input" name="input" hidden="hidden" (change)="onFileChange($event)" accept=".xlsx, .xls">
+        </div>
+      }
+      @case (Views.totals) {
+        <period-total [data]="lastMonthTotal" title="Month"/>
+
+        <period-total [data]="lastWeekTotal" title="Week"/>
+
+        <period-total [data]="opTotal" title="OP"/>
+      }
+      @case (Views.searchList) {
+        <searchable-list [excelData]="excelData" />
+      }
+      @case (Views.learnCenter) {
+        <!--<searchable-list [excelData]="excelData" />-->
+      }
+    }
+  }
+
+</div>
