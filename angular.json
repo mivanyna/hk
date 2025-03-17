@@ -55,6 +55,12 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "docs": {
+              "outputPath": {
+                "base": "docs",
+                "browser": ""
+              }
             }
           },
           "defaultConfiguration": "production"

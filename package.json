@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build-docs": "ng build --output-path docs --base-href /hk/",
+    "build-docs": "ng build --configuration docs --base-href /hk/",
     "deploy": "npx gh-pages -d dist"
   },
   "private": true,
