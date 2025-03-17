@@ -13,6 +13,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'home',
+    pathMatch: 'full',
+    component: HomeComponent,
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }
