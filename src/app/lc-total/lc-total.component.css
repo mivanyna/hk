@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  width: 100%;
+}
+.dest {
+  display: block;
+  width: 300px;
+  height: 25px;
+  vertical-align: top;
+}
+.dest div {
+  display: inline-block;
+  border: 1px solid black;
+  text-align: center;
+  width: 32%;
+}
+.dest.total div {
+  border-width: 2px;
+}
+.dest.loan div + div {
+  background-color: lightgray;
+}
+.dest.selected div {
+  background-color: lightgreen;
+}
+.select-file {
+  margin-bottom: 20px;
+}

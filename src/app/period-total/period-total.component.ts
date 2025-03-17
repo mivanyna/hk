@@ -67,7 +67,6 @@ export class PeriodTotalComponent {
   }
 
   ngOnChanges(): void {
-    console.log('hcnages')
     this.total.total = 0
     this.total.officers = 0
     this.data?.forEach(item => {

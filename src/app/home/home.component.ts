@@ -20,6 +20,7 @@ export class HomeComponent {
   title = 'excel';
 
   views = [
+    { id: Views.file, name: 'Файл' },
     { id: Views.totals, name: 'Сумарно' },
     { id: Views.searchList, name: 'Список місяць' },
     { id: Views.learnCenter, name: 'НЦ' },
