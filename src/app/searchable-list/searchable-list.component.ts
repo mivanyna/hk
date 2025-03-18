@@ -25,7 +25,7 @@ import { ISoldierDataHelper } from '../shared/utils/ISoldierDataHelper'
             (mouseup)="stopSelection()"
             (click)="toggle(record);calcTotal()"
             [ngClass]="{'selected': selected.includes(record)}">
-            <div class="cell month">{{record.day}}</div> <div class="cell week">{{record.week}} </div> <div class="cell day">{{record.month}}</div>
+            <div class="cell day">{{record.day}}</div> <div class="cell week">{{record.week}} </div> <div class="cell month">{{record.month}}</div>
             <div class="cell date" [ngClass]="{'invisible': record.date === data[index-1]?.date}">{{record.date | excelDate | date:dateFormat}} </div>
             <div class="cell dest" [ngClass]="{'invisible': record.dest === data[index-1]?.dest && record.date === data[index-1]?.date, 'divider': record.date != data[index-1]?.date}">{{record.dest}}</div>
           </div>

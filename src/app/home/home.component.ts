@@ -102,13 +102,13 @@ export class HomeComponent {
       if (index) {
         const prevItem = this.excelData[index-1]
         if (prevItem.dest && !item.dest) {
-          item.dest = this.excelData[index - 1].dest;
+          item.dest = this.excelData[index - 1].dest?.toString().toUpperCase().trim();
         }
         if (prevItem.date && !item.date) {
           item.date = this.excelData[index - 1].date;
         }
-        item.dest = item.dest.toString().trim()
-        item.rank = item.rank.toString().trim()
+        item.dest = (item.dest || '').toString().trim().toUpperCase()
+        item.rank = item.rank?.toString().trim()
       }
     })
   }

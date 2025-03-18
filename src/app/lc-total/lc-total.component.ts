@@ -103,7 +103,7 @@ export class LcTotalComponent {
       });
 
       map.forEach(item => {
-        this.destMap[item.unit] = item.name
+        this.destMap[item.unit?.toString().trim().toUpperCase()] = item.name
       })
     };
     reader.readAsBinaryString(file);

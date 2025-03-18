@@ -13,6 +13,9 @@
   .date {
     min-width: 100px;
   }
+  &.month {
+    min-width: 30px;
+  }
   &.divider {
     border-top-color: lightgray;
   }
