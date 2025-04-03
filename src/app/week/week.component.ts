@@ -18,11 +18,6 @@ import { PlanProgressComponent } from '../plan-progress/plan-progress.component'
   imports: [
     PlanProgressComponent
   ],
-   styles: [`
-     plan-progress {
-       margin-bottom: 5px;
-     }
-   `]
 })
 export class WeekComponent {
   @Input() title = ''

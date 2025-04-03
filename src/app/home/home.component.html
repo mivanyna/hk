@@ -36,10 +36,6 @@
           <div>Month totals</div>
           <week [data]="lastMonthTotal" [plan]="monthPlan"></week>
         }
-        <!--@if (planWeeks?.length) {
-          <div> last week</div>
-          <week [data]="lastWeekTotal" [plan]="planWeeks[planWeeks.length-1]"/>
-        }-->
 
         <period-total [data]="lastMonthTotal" title="Month"/>
 

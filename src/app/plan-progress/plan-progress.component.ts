@@ -62,6 +62,7 @@ import { ITotal } from '../period-total/ITotal'
       display: inline-block;
       text-align: center;
       border: 1px solid grey;
+      margin-bottom: 5px;
     }
     .planned {
       background: lightgoldenrodyellow;
