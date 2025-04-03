@@ -24,13 +24,36 @@
           <label for="input"> Select file... </label>
           <input type="file" id="input" name="input" hidden="hidden" (change)="onFileChange($event)" accept=".xlsx, .xls">
         </div>
+
+        <div class="select-file">
+          <label for="planfile"> Select plan file... </label>
+          <input type="file" id="planfile" name="planfile" hidden="hidden" (change)="onPlanFileChange($event)" accept=".xlsx, .xls">
+        </div>
       }
       @case (Views.totals) {
+
+        @if (planWeeks.length) {
+          <div>Month totals</div>
+          <week [data]="lastMonthTotal" [plan]="monthPlan"></week>
+        }
+        <!--@if (planWeeks?.length) {
+          <div> last week</div>
+          <week [data]="lastWeekTotal" [plan]="planWeeks[planWeeks.length-1]"/>
+        }-->
+
         <period-total [data]="lastMonthTotal" title="Month"/>
 
         <period-total [data]="lastWeekTotal" title="Week"/>
 
         <period-total [data]="opTotal" title="OP"/>
+      }
+      @case (Views.totalsByWeek) {
+        @for (planWeek of planWeeks; track planWeek; let index = $index) {
+          <div>
+            <div>Week {{index + 1}}</div>
+            <week [data]="weekTotals[index]" [plan]="planWeek" />
+          </div>
+        }
       }
       @case (Views.searchList) {
         <searchable-list [excelData]="excelData" />

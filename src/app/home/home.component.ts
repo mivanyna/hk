@@ -3,10 +3,12 @@ import { ITotal } from '../period-total/ITotal';
 import * as XLSX from 'xlsx';
 import { ISoldierData } from '../shared/ISoldierData';
 import { ISoldierDataHelper } from '../shared/utils/ISoldierDataHelper'
+import { IPlanItem } from '../plan-progress/IPlanItem'
 
 enum Views {
   file,
   totals,
+  totalsByWeek,
   searchList,
   learnCenter
 }
@@ -18,10 +20,14 @@ enum Views {
 })
 export class HomeComponent {
   title = 'excel';
+  planWeeks: IPlanItem[][] = []
+  weekTotals: ITotal[][] = []
+  monthPlan: IPlanItem[] = []
 
   views = [
     { id: Views.file, name: 'Файл' },
     { id: Views.totals, name: 'Сумарно' },
+    { id: Views.totalsByWeek, name: 'Сумарно тижні' },
     { id: Views.searchList, name: 'Список місяць' },
     { id: Views.learnCenter, name: 'НЦ' },
   ]
@@ -32,6 +38,40 @@ export class HomeComponent {
   lastMonthTotal: ITotal[] = []
   lastWeekTotal: ITotal[] = []
   opTotal: ITotal[] = []
+
+  onPlanFileChange(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    this.planWeeks = []
+    reader.onload = (e: any) => {
+      const workbook = XLSX.read(e.target.result, { type: 'binary', cellStyles: true });
+      workbook.SheetNames.forEach(sheetName => {
+        const worksheet = workbook.Sheets[sheetName];
+
+        const range = XLSX.utils.decode_range(worksheet['!ref'] || '');
+
+        const planDetails: IPlanItem[] = XLSX.utils.sheet_to_json(worksheet, { raw: true, range, skipHidden: true,
+          header: ['milUnit', 'planTotal', 'planOfficers']
+        });
+        this.planWeeks.push(planDetails)
+      })
+
+      this.planWeeks.forEach(plan => {
+        plan.forEach((item: IPlanItem) => {
+          const mp = this.monthPlan.find(p => p.milUnit === item.milUnit)
+          if (mp) {
+            mp.planTotal += item.planTotal
+            mp.planOfficers = (mp.planOfficers || 0)  + (item.planOfficers || 0)
+          } else {
+            this.monthPlan.push({...item})
+          }
+        })
+
+      })
+      this.activeView = Views.totals
+    };
+    reader.readAsBinaryString(file);
+  }
 
   onFileChange(event: any) {
     const file = event.target.files[0];
@@ -80,6 +120,17 @@ export class HomeComponent {
       const lastWeek = [...lastMonth].reverse()
       const lastWeekIndex = lastWeek.findIndex(i => i.week === 1)
       const lastWeekData = lastWeek.splice(0, lastWeekIndex + 1).reverse()
+
+      this.weekTotals = []
+      let currentWeekData: ISoldierData[] = []
+      lastMonth.forEach((item, idx) => {
+        if (item.week === 1 && idx) {
+          this.weekTotals.push(this.getGroupedData(currentWeekData))
+          currentWeekData = []
+        }
+        currentWeekData.push(item)
+      })
+      this.weekTotals.push(this.getGroupedData(currentWeekData))
 
       this.lastWeekTotal = this.getGroupedData(lastWeekData)
 

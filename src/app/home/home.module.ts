@@ -10,10 +10,12 @@ import { ExcelDatePipe } from '../period-total/excel-date.pipe'
 import { FilterByPropPipe } from '../core/pipes/filterByProp.pipe'
 import { SearchableListComponent } from '../searchable-list/searchable-list.component'
 import { LcTotalComponent } from '../lc-total/lc-total.component'
+import { PlanProgressComponent } from '../plan-progress/plan-progress.component'
+import { WeekComponent } from '../week/week.component'
 
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, SharedModule, HomeRoutingModule, PeriodTotalComponent, ExcelDatePipe, FilterByPropPipe, PeriodTotalComponent, PeriodTotalComponent, SearchableListComponent, LcTotalComponent]
+  imports: [CommonModule, SharedModule, HomeRoutingModule, PeriodTotalComponent, ExcelDatePipe, FilterByPropPipe, PeriodTotalComponent, PeriodTotalComponent, SearchableListComponent, LcTotalComponent, PlanProgressComponent, WeekComponent]
 })
 export class HomeModule {}
