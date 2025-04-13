@@ -176,7 +176,7 @@ export class HomeComponent {
       }
       const officers = this.isOfficer(item)
       const dest = grouped.find(i => i.dest === item.dest);
-      console.log({item, grouped, dest});
+
       if (dest) {
 
         dest.loan = dest.loan + (item.loan??0)
