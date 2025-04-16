@@ -52,7 +52,7 @@ export class HomeComponent {
 
         const planDetails: IPlanItem[] = XLSX.utils.sheet_to_json(worksheet, { raw: true, range, skipHidden: true,
           header: ['milUnit', 'planTotal', 'planOfficers']
-        });
+        }).map((item: any) => ({...item, milUnit: item.milUnit.toString()}));
         this.planWeeks.push(planDetails)
       })
 
